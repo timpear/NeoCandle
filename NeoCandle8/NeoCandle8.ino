@@ -1,5 +1,5 @@
 // candle for Adafruit NeoPixel
-// 1 pixel version
+// 8 pixel version
 // by Tim Bartlett, December 2013
 
 #include <Adafruit_NeoPixel.h>
@@ -7,13 +7,13 @@
 
 // color variables: mix RGB (0-255) for desired yellow
 int redPx = 255;
-int grnHigh = 120; //120 for 5v, 135 for 3.3v
-int bluePx = 10; //10 for 5v, 15 for 3.3v
+int grnHigh = 120;
+int bluePx = 10;
 
 // animation time variables, with recommendations
-int burnDepth = 10; //10 for 5v, 14 for 3.3v -- how much green dips below grnHigh for normal burn - 
-int flutterDepth = 25; //25 for 5v, 30 for 3.3v -- maximum dip for flutter
-int cycleTime = 120; //120 -- duration of one dip in milliseconds
+int burnDepth = 10; //how much green dips below grnHigh for normal burn - 
+int flutterDepth = 25; //maximum dip for flutter
+int cycleTime = 120; //duration of one dip in milliseconds
 
 // pay no attention to that man behind the curtain
 int fDelay;
@@ -26,7 +26,7 @@ int flickLow;
 int flutDelay;
 int flutLow;
 
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(1, PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(8, PIN, NEO_GRB + NEO_KHZ800);
 
 void setup() {
   flickerDepth = (burnDepth + flutterDepth) / 2.4;
@@ -62,12 +62,28 @@ void loop() {
 // basic fire funciton - not called in main loop
 void fire(int grnLow) {
   for (int grnPx = grnHigh; grnPx > grnLow; grnPx--) {
+    int halfGrn = grnHigh - ((grnHigh - grnPx) / 2);
     strip.setPixelColor(0, redPx, grnPx, bluePx);
+    strip.setPixelColor(1, redPx, grnPx, bluePx);
+    strip.setPixelColor(2, redPx, halfGrn, bluePx);
+    strip.setPixelColor(3, redPx, grnHigh, bluePx);
+    strip.setPixelColor(4, redPx, grnHigh, bluePx);
+    strip.setPixelColor(5, redPx, halfGrn, bluePx);
+    strip.setPixelColor(6, redPx, grnPx, bluePx);
+    strip.setPixelColor(7, redPx, grnPx, bluePx);
     strip.show();
     delay(fDelay);
   }  
   for (int grnPx = grnLow; grnPx < grnHigh; grnPx++) {
+    int halfGrn = grnHigh - ((grnHigh - grnPx) / 2);
     strip.setPixelColor(0, redPx, grnPx, bluePx);
+    strip.setPixelColor(1, redPx, grnPx, bluePx);
+    strip.setPixelColor(2, redPx, halfGrn, bluePx);
+    strip.setPixelColor(3, redPx, grnHigh, bluePx);
+    strip.setPixelColor(4, redPx, grnHigh, bluePx);
+    strip.setPixelColor(5, redPx, halfGrn, bluePx);
+    strip.setPixelColor(6, redPx, grnPx, bluePx);
+    strip.setPixelColor(7, redPx, grnPx, bluePx);
     strip.show();
     delay(fDelay);
   }
