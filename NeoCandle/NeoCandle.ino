@@ -2,12 +2,14 @@
 // 1 pixel version
 // by Tim Bartlett, December 2013
 
+// current settings for 5v Trinket
+
 #include <Adafruit_NeoPixel.h>
-#define PIN 6
+#define PIN 1
 
 // color variables: mix RGB (0-255) for desired yellow
 int redPx = 255;
-int grnHigh = 120; //120 for 5v, 135 for 3.3v
+int grnHigh = 100; //110-120 for 5v, 135 for 3.3v
 int bluePx = 10; //10 for 5v, 15 for 3.3v
 
 // animation time variables, with recommendations

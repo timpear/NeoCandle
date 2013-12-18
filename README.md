@@ -7,5 +7,7 @@ Adjustable variables appear at the top of the sketch: RGB mix for candle color, 
 
 The animation is created in the loop() by calling animation patterns and setting how long you want each one to run.
 
+Blog writeup at http://timbartlett.net/ledcandle/
+
 Tim Bartlett
 December, 2013 
